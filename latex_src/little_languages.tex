@@ -692,7 +692,7 @@ Forth 和 Postscript) 和便捷计算器都把它作为基本表示法来使用.
                 next
             }
         if (top == 1 && i == NF)
-            printf("\t%.8g\n", stack[top])
+            printf("\t%.8g\n", stack[top--])
         else if (top > 1) {
             printf("error: too many operands\n")
             top = 0
@@ -766,7 +766,7 @@ Forth 和 Postscript) 和便捷计算器都把它作为基本表示法来使用.
               next
           }
       if (top == 1 && i == NF && $NF !~ /\=$/)
-          printf("\t%.8g\n", stack[top])
+          printf("\t%.8g\n", stack[top--])
       else if (top > 1) {
           printf("error: too many operands\n")
           top = 0
