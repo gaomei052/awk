@@ -675,6 +675,7 @@ Forth 和 Postscript) 和便捷计算器都把它作为基本表示法来使用.
     {   for (i = 1; i <= NF; i++)
             if ($i ~ /^[+-]?([0-9]+[.]?[0-9]*|[.][0-9]+)$/) {
                 stack[++top] = $i
+                continue
             } else if ($i == "+" && top > 1) {
                 stack[top-1] += stack[top]; top--
             } else if ($i == "-" && top > 1) {
@@ -690,8 +691,8 @@ Forth 和 Postscript) 和便捷计算器都把它作为基本表示法来使用.
                 top = 0
                 next
             }
-        if (top == 1)
-            printf("\t%.8g\n", stack[top--])
+        if (top == 1 && i == NF)
+            printf("\t%.8g\n", stack[top])
         else if (top > 1) {
             printf("error: too many operands\n")
             top = 0
@@ -730,6 +731,7 @@ Forth 和 Postscript) 和便捷计算器都把它作为基本表示法来使用.
     { for (i = 1; i <= NF; i++)
           if ($i ~ /^[+-]?([0-9]+[.]?[0-9]*|[.][0-9]+)$/) {
               stack[++top] = $i
+              continue
           } else if ($i == "+" && top > 1) {
               stack[top-1] += stack[top]; top--
           } else if ($i == "-" && top > 1) {
@@ -763,8 +765,8 @@ Forth 和 Postscript) 和便捷计算器都把它作为基本表示法来使用.
               top = 0
               next
           }
-      if (top == 1 && $NF !~ /\=$/)
-          printf("\t%.8g\n", stack[top--])
+      if (top == 1 && i == NF && $NF !~ /\=$/)
+          printf("\t%.8g\n", stack[top])
       else if (top > 1) {
           printf("error: too many operands\n")
           top = 0
