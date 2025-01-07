@@ -729,7 +729,7 @@ Forth 和 Postscript) 和便捷计算器都把它作为基本表示法来使用.
 
     { for (i = 1; i <= NF; i++)
           if ($i ~ /^[+-]?([0-9]+[.]?[0-9]*|[.][0-9]+)$/) {
-              stack[++top] = $i
+              stack[++top] = $i 
           } else if ($i == "+" && top > 1) {
               stack[top-1] += stack[top]; top--
           } else if ($i == "-" && top > 1) {
